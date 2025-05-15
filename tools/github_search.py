@@ -31,10 +31,10 @@ def search_similar_projects_github(query, max_results=3):
     for item in data.get("items", []):
         desc = item.get("description", "")
         if not desc or len(desc) < 15:
-            continue  # pular repositórios sem descrição útil
+            continue  
 
         if item.get("stargazers_count", 0) < 5:
-            continue  # ignorar repositórios com poucas estrelas
+            continue 
 
         results.append({
             "title": item["full_name"],
@@ -45,7 +45,6 @@ def search_similar_projects_github(query, max_results=3):
         if len(results) == max_results:
             break
 
-    # fallback se tudo for ignorado
     if not results:
         results.append({
             "title": "GitHub Search Fallback",
